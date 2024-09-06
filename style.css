@@ -2,32 +2,40 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   min-height: 100vh;
   background-image: url("./img/background.jpg");
   animation: bg-animation 1000s infinite linear;
+  /*Название, перемещение от 0% до 100% в секундах, бесконечная анимация, линейное перемещение*/
   padding: 50px 20px;
 }
 
 header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .themeChange {
   height: 50px;
   width: 50px;
+  cursor: pointer;
 }
 
 .rounded {
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px;
 }
 
 .darkBg {
+  border-radius: 10px;
   background-color: rgba(200, 200, 200, 0.8);
+  padding: 5px;
 }
 
 .loader {
@@ -66,4 +74,40 @@ header {
   100% {
     background-position: top left;
   }
+}
+
+nav button {
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: orange;
+  border-radius: 6px;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  flex-grow: 100;
+}
+
+.search button {
+  border: none;
+  cursor: pointer;
+  padding: 5px 16px;
+  font-size: 16px;
+}
+
+.movie_title {
+  text-align: center;
 }
