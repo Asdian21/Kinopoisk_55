@@ -1,3 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url("./img/background.jpg");
+  animation: bg-animation 1000s infinite linear;
+  padding: 50px 20px;
+}
+
+header {
+  display: flex;
+}
+
+.themeChange {
+  height: 50px;
+  width: 50px;
+}
+
+.rounded {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.darkBg {
+  background-color: rgba(200, 200, 200, 0.8);
+}
+
 .loader {
   display: none;
   height: 14px;
@@ -15,5 +47,23 @@
   }
   100% {
     background-position: 250% 0, 250% 0;
+  }
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: top left;
+  }
+  25% {
+    background-position: top right;
+  }
+  50% {
+    background-position: bottom right;
+  }
+  75% {
+    background-position: bottom left;
+  }
+  100% {
+    background-position: top left;
   }
 }
