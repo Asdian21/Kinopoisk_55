@@ -110,4 +110,34 @@ nav button {
 
 .movie_title {
   text-align: center;
+  margin-bottom: 10px;
+}
+
+.movie {
+  display: flex;
+  gap: 20px;
+}
+
+.movie_img {
+  width: 300px;
+  min-height: 500px;
+  background-image: url("./img/film2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.movie_info {
+  width: 300px;
+  flex-grow: 1;
+}
+
+.desc {
+  display: flex;
+}
+
+.desc div {
+  width: 50%;
+  background-color: rgba(200, 200, 200, 0.8);
 }
