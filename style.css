@@ -23,6 +23,12 @@ header {
   height: 50px;
   width: 50px;
   cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.themeChange.darkTheme {
+  transform: rotate(180deg);
+  filter: invert(100%);
 }
 
 .rounded {
