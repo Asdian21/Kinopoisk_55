@@ -13,6 +13,24 @@ body {
   padding: 50px 20px;
 }
 
+@keyframes bg-animation {
+  0% {
+    background-position: top left;
+  }
+  25% {
+    background-position: top right;
+  }
+  50% {
+    background-position: bottom right;
+  }
+  75% {
+    background-position: bottom left;
+  }
+  100% {
+    background-position: top left;
+  }
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -61,24 +79,6 @@ header {
   }
   100% {
     background-position: 250% 0, 250% 0;
-  }
-}
-
-@keyframes bg-animation {
-  0% {
-    background-position: top left;
-  }
-  25% {
-    background-position: top right;
-  }
-  50% {
-    background-position: bottom right;
-  }
-  75% {
-    background-position: bottom left;
-  }
-  100% {
-    background-position: top left;
   }
 }
 
@@ -180,11 +180,8 @@ nav button {
   left: 10px;
 }
 
-.save.saved {
+.saved {
   filter: invert(1) sepia(1) saturate(10) hue-rotate(135deg);
-}
-
-.save img {
 }
 
 .similarMovieText {
