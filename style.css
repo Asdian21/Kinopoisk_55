@@ -198,3 +198,23 @@ nav button {
   width: 100%;
   border-radius: 0px 0px 10px 10px;
 }
+
+/* DARK THEME */
+
+.body {
+  transition: 0.5s;
+}
+
+.dark,
+.dark button,
+.dark input {
+  color: white;
+}
+
+.dark .rounded {
+  background-color: rgba(50, 50, 50, 0.5);
+}
+
+.dark .darkBg {
+  background-color: rgba(10, 10, 10, 0.5);
+}
