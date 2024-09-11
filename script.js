@@ -42,6 +42,47 @@ async function searchMovie() {
     apikey: "54b23d27",
     t: searchText,
   });
+
+  if (response.Response == "False") {
+    // В ответе пришла ошибка
+    loader.style.display = "none";
+    alert(response.Error);
+  } else {
+    // Получили корректный код
+    let main = document.querySelector(".main");
+    main.style.display = "block";
+
+    let movieTitle = document.querySelector(".movie_title h2");
+    movieTitle.innerHTML = response.Title;
+
+    let movieImg = document.querySelector(".movie_img");
+    movieImg.style.backgroundImage = `url(${response.Poster})`;
+
+    let detailsList = [
+      "Actors",
+      "Country",
+      "Language",
+      "Genre",
+      "Plot",
+      "Realised",
+      "Runtime",
+      "imdbRating",
+    ];
+    let movieInfo = document.querySelector(".movie_info");
+    movieInfo.innerHTML = "";
+
+    for (let i = 0; i < detailsList.length; i++) {
+      let param = detailsList[i];
+      let desc = `
+      <div class="desc darkBg">
+        <div class="title">${param}</div>
+        <div class="value">${response[param] || "N/A"}</div>
+      </div>`;
+      movieInfo.innerHTML = movieInfo.innerHTML + desc;
+    }
+
+    loader.style.display = "none";
+  }
   console.log(response);
 }
 

@@ -154,7 +154,7 @@ nav button {
 }
 
 .similar_movies {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(4, 1fr);
   gap: 5px;
 }
@@ -214,4 +214,8 @@ nav button {
 
 .dark .darkBg {
   background-color: rgba(10, 10, 10, 0.5);
+}
+
+.main {
+  display: none;
 }
