@@ -121,12 +121,25 @@ function showSimilarMovies(movies) {
 }
 
 function activateFavBtns() {
-  document.querySelector("favStar").forEach((elem) => {
+  document.querySelector(".favStar").forEach((elem) => {
     elem.addEventListener("click", addToFav);
   });
 }
 
-function addToFav() {}
+function addToFav() {
+  let favBtn = event.target;
+  let title = favBtn.getAttribute("data-title");
+  let poster = favBtn.getAttribute("data-poster");
+  let imdbID = favBtn.getAttribute("data-imdbID");
+}
+
+let fav = localStorage.getItem("fav");
+if (!fav) {
+  fav = [];
+  localStorage.setItem("favs", JSON.stringify(favs));
+} else {
+  JSON.parse(favs);
+}
 
 async function sendRequest(url, method, data) {
   if (method == "POST") {
