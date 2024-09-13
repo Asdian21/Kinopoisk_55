@@ -90,13 +90,43 @@ async function searchMovie() {
 async function searchSimilarMovies(title) {
   let similarMovies = await sendRequest("https://www.omdbapi.com/", "GET", {
     apikey: "54b23d27",
-    s: "title",
+    s: title,
   });
-  let similarMoviesTitle = document.querySelector(".similar_movie_title h2");
-  similarMoviesTitle.innerHTML = `Похожие фильмы: ${similarMovies.totalResults}`;
-  similarMoviesTitle.style.display = "block";
-  console.log(similarMovies.totalResults);
+  if (similarMovies.Response == "False") {
+    document.querySelector(".similar_movie_title h2").style.display = "none";
+    document.querySelector(".similar_movies").style.display = "none";
+  } else {
+    document.querySelector(
+      ".similar_movie_title h2"
+    ).innerHTML = `Похожие фильмы:${similarMovies.totalResults}`;
+    showSimilarMovies(similarMovies.Search);
+    console.log(similarMovies);
+  }
 }
+
+function showSimilarMovies(movies) {
+  let similarMoviesContainer = document.querySelector(".similar_movies");
+  let similarMoviesTitle = document.querySelector(".similar_movie_title h2");
+  similarMoviesContainer.innerHTML = "";
+
+  movies.forEach((movie) => {
+    similarMoviesContainer.innerHTML += `<div class="similarMovieCard" style="background-image:url(${movie.Poster})">
+    <div class="favStar"></div>
+    <div class="similarMovieText">${movie.Title}</div>
+    </div>`;
+  });
+  similarMoviesContainer.style.display = "grid";
+  similarMoviesTitle.style.display = "block";
+  activateFavBtns();
+}
+
+function activateFavBtns() {
+  document.querySelector("favStar").forEach((elem) => {
+    elem.addEventListener("click", addToFav);
+  });
+}
+
+function addToFav() {}
 
 async function sendRequest(url, method, data) {
   if (method == "POST") {
