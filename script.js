@@ -111,7 +111,7 @@ function showSimilarMovies(movies) {
 
   movies.forEach((movie) => {
     similarMoviesContainer.innerHTML += `<div class="similarMovieCard" style="background-image:url(${movie.Poster})">
-    <div class="favStar"></div>
+    <div class="favStar" data-title="${movie.Title}" data-poster="${movie.Poster}" data-imdbID="${movie.imdbID}"></div>
     <div class="similarMovieText">${movie.Title}</div>
     </div>`;
   });

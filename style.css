@@ -161,7 +161,7 @@ nav button {
 
 .similarMovieCard {
   background-image: url("./img/film1.jpg");
-  min-height: 300px;
+  min-height: 700px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
