@@ -219,3 +219,8 @@ nav button {
 .main {
   display: none;
 }
+
+.similar_movie_title {
+  display: flex;
+  justify-content: center;
+}

@@ -38,7 +38,7 @@ async function searchMovie() {
   let searchText = document.getElementById("dd").value;
   console.log(searchText);
 
-  let response = await sendRequest("http://www.omdbapi.com/", "GET", {
+  let response = await sendRequest("https://www.omdbapi.com/", "GET", {
     apikey: "54b23d27",
     t: searchText,
   });
@@ -82,8 +82,20 @@ async function searchMovie() {
     }
 
     loader.style.display = "none";
+    searchSimilarMovies(searchText);
   }
   console.log(response);
+}
+
+async function searchSimilarMovies(title) {
+  let similarMovies = await sendRequest("https://www.omdbapi.com/", "GET", {
+    apikey: "54b23d27",
+    s: "title",
+  });
+  let similarMoviesTitle = document.querySelector(".similar_movie_title h2");
+  similarMoviesTitle.innerHTML = `Похожие фильмы: ${similarMovies.totalResults}`;
+  similarMoviesTitle.style.display = "block";
+  console.log(similarMovies.totalResults);
 }
 
 async function sendRequest(url, method, data) {
