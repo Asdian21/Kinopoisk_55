@@ -32,6 +32,13 @@ searchBtn.addEventListener("click", searchMovie);
 
 let loader = document.querySelector(".loader");
 
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchMovie();
+  }
+});
+
 async function searchMovie() {
   loader.style.display = "block";
 
