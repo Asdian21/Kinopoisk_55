@@ -99,15 +99,18 @@ async function searchSimilarMovies(title) {
     apikey: "54b23d27",
     s: title,
   });
+
+  let similarMoviesContainer = document.querySelector(".similar_movies");
+  similarMoviesContainer.style.display = "grid"; // Убедимся, что грид-контейнер отображается
+
   if (similarMovies.Response == "False") {
     document.querySelector(".similar_movie_title h2").style.display = "none";
-    document.querySelector(".similar_movies").style.display = "none";
+    similarMoviesContainer.style.display = "none"; // Скрываем, если ошибка
   } else {
     document.querySelector(
       ".similar_movie_title h2"
-    ).innerHTML = `Похожие фильмы:${similarMovies.totalResults}`;
+    ).innerHTML = `Похожие фильмы: ${similarMovies.totalResults}`;
     showSimilarMovies(similarMovies.Search);
-    console.log(similarMovies);
   }
 }
 
@@ -117,11 +120,16 @@ function showSimilarMovies(movies) {
   similarMoviesContainer.innerHTML = "";
 
   movies.forEach((movie) => {
+    const imdbID = movie.imdbID; // Добавляем это
+    const index = favs.findIndex((obj) => obj.imdbID === imdbID);
+    let favCheck = index < 0 ? "" : "active";
+
     similarMoviesContainer.innerHTML += `<div class="similarMovieCard" style="background-image:url(${movie.Poster})">
-    <div class="favStar" data-title="${movie.Title}" data-poster="${movie.Poster}" data-imdbID="${movie.imdbID}"></div>
-    <div class="similarMovieText">${movie.Title}</div>
+      <div class="favStar ${favCheck}" data-title="${movie.Title}" data-poster="${movie.Poster}" data-imdbID="${imdbID}"></div>
+      <div class="similarMovieText">${movie.Title}</div>
     </div>`;
   });
+
   similarMoviesContainer.style.display = "grid";
   similarMoviesTitle.style.display = "block";
   activateFavBtns();
@@ -135,19 +143,32 @@ function activateFavBtns() {
 
 function addToFav() {
   let favBtn = event.target;
-  console.log(favBtn);
-
   let title = favBtn.getAttribute("data-title");
   let poster = favBtn.getAttribute("data-poster");
   let imdbID = favBtn.getAttribute("data-imdbID");
+
+  const index = favs.findIndex((obj) => obj.imdbID === imdbID);
+
+  if (index < 0) {
+    let fav = { title, poster, imdbID };
+    favs.push(fav);
+    favBtn.classList.add("active");
+  } else {
+    favs.splice(index, 1);
+    favBtn.classList.remove("active");
+  }
+
+  // Обновляем localStorage
+  localStorage.setItem("favs", JSON.stringify(favs));
 }
 
-let fav = localStorage.getItem("fav");
-if (!fav) {
-  fav = [];
+let favs = localStorage.getItem("favs");
+
+if (!favs) {
+  favs = [];
   localStorage.setItem("favs", JSON.stringify(favs));
 } else {
-  JSON.parse(favs);
+  favs = JSON.parse(favs);
 }
 
 async function sendRequest(url, method, data) {
