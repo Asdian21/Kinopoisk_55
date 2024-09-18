@@ -128,13 +128,15 @@ function showSimilarMovies(movies) {
 }
 
 function activateFavBtns() {
-  document.querySelector(".favStar").forEach((elem) => {
+  document.querySelectorAll(".favStar").forEach((elem) => {
     elem.addEventListener("click", addToFav);
   });
 }
 
 function addToFav() {
   let favBtn = event.target;
+  console.log(favBtn);
+
   let title = favBtn.getAttribute("data-title");
   let poster = favBtn.getAttribute("data-poster");
   let imdbID = favBtn.getAttribute("data-imdbID");
