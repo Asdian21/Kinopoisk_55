@@ -195,6 +195,36 @@ async function sendRequest(url, method, data) {
   }
 }
 
+function showFavs() {
+  let similarMoviesContainer = document.querySelector(".similar_movies");
+  let similarMoviesTitle = document.querySelector(".similar_movie_title h2");
+  similarMoviesContainer.innerHTML = "";
+
+  // Обновляем заголовок
+  similarMoviesTitle.innerHTML =
+    favs.length > 0
+      ? `Фильмы в избранном: ${favs.length}`
+      : "Нет фильмов в избранном.";
+
+  // Отображаем фильмы из избранного
+  favs.forEach((movie) => {
+    similarMoviesContainer.innerHTML += `
+      <div class="similarMovieCard" style="background-image:url(${movie.poster})">
+        <div class="favStar active" data-title="${movie.title}" data-poster="${movie.poster}" data-imdbID="${movie.imdbID}"></div>
+        <div class="similarMovieText">${movie.title}</div>
+      </div>`;
+  });
+
+  // Если есть избранные фильмы, отображаем грид и заголовок
+  if (favs.length > 0) {
+    similarMoviesContainer.style.display = "grid";
+    similarMoviesTitle.style.display = "block";
+  }
+
+  // Активируем кнопки "в избранное"
+  activateFavBtns();
+}
+
 // асинхронная функция возвращает промис, когда запрос отправился, но ты не знаешь, когда придёт ответ
 
 // let changeColorBtn = document.querySelector(".save");
