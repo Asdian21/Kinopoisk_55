@@ -1,7 +1,19 @@
+// Инициализация favs
+let favs = localStorage.getItem("favs");
+
+if (!favs) {
+  favs = [];
+  localStorage.setItem("favs", JSON.stringify(favs));
+} else {
+  favs = JSON.parse(favs);
+}
+
 let changeThemeBtn = document.querySelector(".themeChange");
 let body = document.querySelector("body");
 
-changeThemeBtn.addEventListener("click", changeTheme);
+if (changeThemeBtn) {
+  changeThemeBtn.addEventListener("click", changeTheme);
+}
 
 function changeTheme() {
   changeThemeBtn.classList.toggle("darkTheme");
@@ -160,15 +172,6 @@ function addToFav() {
 
   // Обновляем localStorage
   localStorage.setItem("favs", JSON.stringify(favs));
-}
-
-let favs = localStorage.getItem("favs");
-
-if (!favs) {
-  favs = [];
-  localStorage.setItem("favs", JSON.stringify(favs));
-} else {
-  favs = JSON.parse(favs);
 }
 
 async function sendRequest(url, method, data) {
